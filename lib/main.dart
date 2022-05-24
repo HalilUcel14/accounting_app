@@ -1,11 +1,12 @@
-import 'package:counting_app/constants/shared_constants.dart';
-import 'package:counting_app/core/route/app_route.dart';
-import 'package:counting_app/core/theme_management/theme_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:counting_app/core/theme_management/theme_extension.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'constants/shared_constants.dart';
+import 'core/route/app_route.dart';
+import 'core/theme/theme_management/theme_extension.dart';
+import 'core/theme/theme_management/theme_manager.dart';
 
 late bool _isFirstTimeShowed;
 

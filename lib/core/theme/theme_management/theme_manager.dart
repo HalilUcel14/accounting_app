@@ -1,6 +1,7 @@
-import 'package:counting_app/core/theme_management/i_theme_manager.dart';
-import 'package:counting_app/core/theme_management/theme_extension.dart';
 import 'package:flutter/material.dart';
+
+import 'i_theme_manager.dart';
+import 'theme_extension.dart';
 
 class ThemeManager extends ChangeNotifier implements IThemeManager {
   static ThemeManager? _instance;

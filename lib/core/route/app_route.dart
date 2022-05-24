@@ -1,4 +1,4 @@
-import 'package:counting_app/screen/authentication/onboard/view/onboard_screen.dart';
+import '../../screen/authentication/onboard/view/onboard_screen.dart';
 
 import 'package:flutter/material.dart';
 

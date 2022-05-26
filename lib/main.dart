@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'constants/shared_constants.dart';
+import 'constants/theme_constants.dart';
 import 'core/route/app_route.dart';
 import 'core/theme/theme_management/theme_extension.dart';
 import 'core/theme/theme_management/theme_manager.dart';
@@ -11,7 +12,13 @@ import 'core/theme/theme_management/theme_manager.dart';
 late bool _isFirstTimeShowed;
 
 void main() async {
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: ThemeConst.primaryColor,
+      statusBarBrightness: Brightness.light,
+      statusBarIconBrightness: Brightness.dark,
+    ),
+  );
   WidgetsFlutterBinding.ensureInitialized();
   //
   SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -35,7 +42,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Vakıfbank SK',
       theme: context.theme,
       initialRoute:
           _isFirstTimeShowed ? AppRoutes.initRoute : AppRoutes.onboard,

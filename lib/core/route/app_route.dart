@@ -12,8 +12,8 @@ class AppRoutes {
   AppRoutes._init();
 
   static const String initRoute = '/';
-  static const String onboard = '/ONBOARD';
-  static const String menu = '/MENU';
+  static const String onboard = 'onboard';
+  static const String menu = 'menu';
 
   Map<String, Widget Function(BuildContext)> routes = <String, WidgetBuilder>{
     initRoute: (context) => const MainScaffold(),

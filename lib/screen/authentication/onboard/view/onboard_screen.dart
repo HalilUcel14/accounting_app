@@ -1,3 +1,4 @@
+import 'package:counting_app/screen/authentication/onboard/view/components/body.dart';
 import 'package:flutter/material.dart';
 import 'package:hucel_core/hucel_core.dart';
 
@@ -23,8 +24,7 @@ class OnBoardScreen extends BaseStateless {
     );
   }
 
-  Scaffold _scaffold() => const Scaffold(
-        backgroundColor: Colors.red,
-        body: Text("Haaa"),
+  Scaffold _scaffold() => Scaffold(
+        body: OnBoardBody(),
       );
 }

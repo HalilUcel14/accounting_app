@@ -44,8 +44,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Vakıfbank SK',
       theme: context.theme,
-      initialRoute:
-          _isFirstTimeShowed ? AppRoutes.initRoute : AppRoutes.onboard,
+      initialRoute: AppRoutes.onboard,
+      //    _isFirstTimeShowed ? AppRoutes.initRoute : AppRoutes.onboard,
       routes: AppRoutes.instance.routes,
     );
   }

@@ -1,17 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:hucel_core/hucel_core.dart';
 
 class OnBoardModel extends BaseModel {
   String? title;
-  String? description;
+  String? firstDescription;
+  String? specialDescription;
+  String? lastDescription;
   String? imgUrl;
-  Color? backgroundColor;
 
   OnBoardModel({
-    this.backgroundColor,
-    this.description,
+    this.firstDescription,
+    this.lastDescription,
     this.imgUrl,
+    this.specialDescription,
     this.title,
   });
 
@@ -27,7 +28,6 @@ class OnBoardModel extends BaseModel {
 
   @override
   Map<String, Object?> toJson() {
-    // TODO: implement toJson
     throw UnimplementedError();
   }
 }

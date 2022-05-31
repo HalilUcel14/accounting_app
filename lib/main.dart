@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'constants/shared_constants.dart';
-import 'constants/theme_constants.dart';
 import 'core/route/app_route.dart';
 import 'core/theme/theme_management/theme_extension.dart';
 import 'core/theme/theme_management/theme_manager.dart';
@@ -14,7 +13,7 @@ late bool _isFirstTimeShowed;
 void main() async {
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
-      statusBarColor: ThemeConst.primaryColor,
+      statusBarColor: Colors.transparent, //  ThemeConst.primaryColor,
       statusBarBrightness: Brightness.light,
       statusBarIconBrightness: Brightness.dark,
     ),

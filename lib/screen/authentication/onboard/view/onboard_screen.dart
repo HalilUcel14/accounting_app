@@ -1,8 +1,8 @@
-import 'package:counting_app/screen/authentication/onboard/view/components/body.dart';
 import 'package:flutter/material.dart';
 import 'package:hucel_core/hucel_core.dart';
 
 import '../viewmodel/onboard_viewmodel.dart';
+import 'components/body.dart';
 
 class OnBoardScreen extends BaseStateless {
   OnBoardScreen({Key? key}) : super(key: key);
@@ -25,6 +25,8 @@ class OnBoardScreen extends BaseStateless {
   }
 
   Scaffold _scaffold() => Scaffold(
-        body: OnBoardBody(),
+        body: SafeArea(
+          child: OnBoardBody(_viewModel),
+        ),
       );
 }

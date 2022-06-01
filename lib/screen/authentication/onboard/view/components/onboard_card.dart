@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hucel_core/hucel_core.dart';
 import 'package:hucel_widget/hucel_widget.dart';
 
+import '../../../../../constants/theme_constants.dart';
+import '../../../../../core/route/app_route.dart';
 import '../../../../../core/widgets/page_indicator.dart';
 import '../../model/onboard_model.dart';
 import '../../viewmodel/onboard_viewmodel.dart';
@@ -34,21 +36,50 @@ class OnboardCard extends StatelessWidget {
                 model: viewModel.onboardList[currentPages],
               ),
               const Spacer(),
-              PaddingRow(
-                padding: context.padHorizontalNormaly,
-                children: [
-                  TextButton(onPressed: () {}, child: const Text("Skip")),
-                  const Spacer(),
-                  ElevatedButtonWithStadiumBorder(
-                      child: const Text("Next"), onPressed: () {})
-                ],
-              ),
+              _cardButton(context),
               SpaceSizedHeight(
                   context: context, height: constraints.maxHeight * 0.05),
             ],
           );
         },
       ),
+    );
+  }
+
+  PaddingRow _cardButton(BuildContext context) {
+    return PaddingRow(
+      padding: context.padHorizontalNormaly,
+      children: [
+        ElevatedButtonWithStadiumBorder(
+          fixedSize: Size(context.heightXXL, context.heightS),
+          styleBackgroundColor: ThemeConst.primaryColor,
+          foregroundColor: Colors.black,
+          child: const Text("Skip"),
+          onPressed: () {
+            Navigator.pushNamedAndRemoveUntil(
+                context, AppRoutes.login, (route) => false);
+          },
+        ),
+        const Spacer(),
+        ElevatedButtonWithStadiumBorder(
+          fixedSize: Size(context.heightXXL, context.heightS),
+          styleBackgroundColor: ThemeConst.primaryColor,
+          foregroundColor: Colors.black,
+          child: Text(currentPages == viewModel.onboardList.length - 1
+              ? "Return"
+              : "Next"),
+          onPressed: () {
+            if (currentPages == viewModel.onboardList.length - 1) {
+              viewModel.controller.jumpToPage(0);
+            } else {
+              viewModel.controller.nextPage(
+                duration: const Duration(milliseconds: 200),
+                curve: Curves.easeIn,
+              );
+            }
+          },
+        ),
+      ],
     );
   }
 
@@ -60,6 +91,8 @@ class OnboardCard extends StatelessWidget {
         ...List.generate(
           viewModel.onboardList.length,
           (index) => MyPageIndicator(
+            unSelectedColor: ThemeConst.primaryColor,
+            selectedColor: Colors.black,
             isActive: index == currentPages ? true : false,
             duration: const Duration(milliseconds: 500),
           ),

@@ -13,6 +13,10 @@ class OnBoardConst {
         fontWeight: FontWeight.bold,
         fontSize: context.heightM,
       );
+  static specialTextStyle() => const TextStyle(
+        color: Colors.black,
+        fontWeight: FontWeight.bold,
+      );
 
   static cardDecoration(BuildContext context) => BoxDecoration(
         color: Colors.white,

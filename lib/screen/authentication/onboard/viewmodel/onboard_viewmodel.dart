@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hucel_core/hucel_core.dart';
 import 'package:mobx/mobx.dart';
@@ -11,10 +12,69 @@ class OnBoardScreenViewModel = _OnBoardScreenViewModelBase
 
 abstract class _OnBoardScreenViewModelBase with Store, BaseViewModel {
   //
+
+  @action
+  List<OnBoardModel> fetchDataFromFirebase({required String collectionName}) {
+    List<OnBoardModel> listed = [];
+    FirebaseFirestore.instance
+        .collection(collectionName)
+        .get()
+        .then((docsSnapshot) {
+      for (var element in docsSnapshot.docs) {
+        var fromMap = OnBoardModel().fromJson(element.data());
+        listed.add(fromMap);
+      }
+    });
+    return listed;
+  }
+
+  List<Map<String, dynamic>> fetchModelFromCloudStore(
+      {required String collectionName, String? docsName}) {
+    List<Map<String, dynamic>> mapList = [];
+    if (docsName == null) {
+      FirebaseFirestore.instance
+          .collection(collectionName)
+          .get()
+          .then((docsData) {
+        for (var elements in docsData.docs) {
+          mapList.add(elements.data());
+        }
+      });
+    } else {
+      FirebaseFirestore.instance
+          .collection(collectionName)
+          .doc(docsName)
+          .get()
+          .then((value) => mapList.add(value.data()!));
+    }
+    return mapList;
+  }
+
   @observable
   PageController controller = PageController();
   @observable
-  List<OnBoardModel> onboardList = [
+  List<OnBoardModel> onboardList = [];
+
+  @observable
+  int currentPage = 0;
+  //
+  @action
+  void changePage(int newPage) {
+    currentPage = newPage;
+  }
+
+  //
+  @override
+  void setContext(BuildContext? context) => baseContext = context;
+
+  @override
+  void init() async {
+    onboardList = fetchDataFromFirebase(collectionName: "onboard");
+  }
+}
+
+class _BaseOption {
+  final List<OnBoardModel> defaultOnboardList = [
     OnBoardModel(
       imgUrl: "assets/images/onboard/logo_sk.png",
       title: "Vakıfbank SK",
@@ -37,24 +97,10 @@ abstract class _OnBoardScreenViewModelBase with Store, BaseViewModel {
       imgUrl: "assets/images/onboard/five_cup.png",
       title: "Mükemmel Sezon",
       firstDescription:
-          "   2013'ün ardından bir sezonda 5 kupanın 5'inide aldık.\n",
+          "   2013 yılının ardından, harika performanslar sağlayan takımımız bir sezonda alınabilinen 5 kupanın 5'inide aldı.\n",
       specialDescription:
           "''[FIVB Dünya Kupası]-[Misli.Com Sultanlar Ligi]-[CEV Avrupa Şampiyonası]-[AXA Sigorta Türkiye Kupası]-[Sultanlar Ligi Süper Kupası]''",
       lastDescription: "\n[2013]-[2022]",
     ),
   ];
-  @observable
-  int currentPage = 0;
-  //
-  @action
-  void changePage(int newPage) {
-    currentPage = newPage;
-  }
-
-  //
-  @override
-  void setContext(BuildContext? context) => baseContext = context;
-
-  @override
-  void init() {}
 }

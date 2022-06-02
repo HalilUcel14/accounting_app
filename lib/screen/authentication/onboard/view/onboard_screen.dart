@@ -39,7 +39,9 @@ class OnBoardScreen extends BaseStateless {
               return Column(
                 children: [
                   // Image Widget
-                  expandImageField(_viewModel.onboardList[index].imgUrl!),
+                  ExpandImageField(
+                      imgUrl: _viewModel.onboardList[index].imgUrl!),
+                  //expandImageField(_viewModel.onboardList[index].imgUrl!),
                   // Card Widget
                   OnboardCard(viewModel: _viewModel, currentPages: index),
                 ],

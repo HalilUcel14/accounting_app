@@ -16,18 +16,43 @@ class OnBoardModel extends BaseModel {
     this.title,
   });
 
-  OnBoardModel.models();
+  static String firstDesc = "firstDescription";
+  static String specialDesc = "specialDescription";
+  static String lastDesc = 'lastDescription';
+  static String img = 'imgUrl';
+  static String tit = 'title';
 
   @override
   fromDocumentSnapshot(DocumentSnapshot<Map<String, dynamic>> docs) {
-    //throw UnimplementedError();
+    var _docs = docs.data()!;
+    return OnBoardModel(
+      firstDescription: _docs[firstDesc],
+      imgUrl: _docs[img],
+      lastDescription: _docs[lastDesc],
+      specialDescription: _docs[specialDesc],
+      title: _docs[tit],
+    );
   }
 
   @override
-  fromJson(Map<String, Object> json) {}
+  fromJson(Map<String, dynamic> json) {
+    return OnBoardModel(
+      firstDescription: json[firstDesc].toString(),
+      imgUrl: json[img].toString(),
+      lastDescription: json[lastDesc].toString(),
+      specialDescription: json[specialDesc].toString(),
+      title: json[tit].toString(),
+    );
+  }
 
   @override
   Map<String, Object?> toJson() {
-    throw UnimplementedError();
+    return {
+      firstDesc: firstDescription,
+      specialDesc: specialDescription,
+      lastDesc: lastDescription,
+      tit: title,
+      img: imgUrl,
+    };
   }
 }

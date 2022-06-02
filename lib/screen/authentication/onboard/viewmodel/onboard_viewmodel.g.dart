@@ -61,6 +61,17 @@ mixin _$OnBoardScreenViewModel on _OnBoardScreenViewModelBase, Store {
       ActionController(name: '_OnBoardScreenViewModelBase', context: context);
 
   @override
+  List<OnBoardModel> fetchDataFromFirebase({required String collectionName}) {
+    final _$actionInfo = _$_OnBoardScreenViewModelBaseActionController
+        .startAction(name: '_OnBoardScreenViewModelBase.fetchDataFromFirebase');
+    try {
+      return super.fetchDataFromFirebase(collectionName: collectionName);
+    } finally {
+      _$_OnBoardScreenViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void changePage(int newPage) {
     final _$actionInfo = _$_OnBoardScreenViewModelBaseActionController
         .startAction(name: '_OnBoardScreenViewModelBase.changePage');

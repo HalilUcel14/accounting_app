@@ -124,7 +124,7 @@ class OnboardCard extends StatelessWidget {
             text: model.specialDescription, // Special Text
             style: OnBoardConst.specialTextStyle(),
           ),
-          TextSpan(text: model.lastDescription), // Last Text
+          TextSpan(text: "\n${model.lastDescription}"), // Last Text
         ],
       ),
       textAlign: TextAlign.center,

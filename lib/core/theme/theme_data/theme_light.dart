@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../constants/theme_constants.dart';
 import 'application_theme.dart';
 
 class ThemeLight extends ApplicationTheme {
@@ -21,6 +22,13 @@ class ThemeLight extends ApplicationTheme {
             fontSize: 22,
             color: Colors.black,
             fontWeight: FontWeight.bold,
+          ),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+            backgroundColor:
+                MaterialStateProperty.all<Color>(ThemeConst.primaryColor),
+            foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
           ),
         ),
         buttonTheme: const ButtonThemeData(

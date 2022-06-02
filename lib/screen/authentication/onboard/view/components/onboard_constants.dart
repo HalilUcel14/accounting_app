@@ -3,6 +3,8 @@ import 'package:hucel_core/hucel_core.dart';
 
 class OnBoardConst {
   static const String skipButton = "Skip";
+  static const String nextButton = "Next";
+  static const String returnButton = "Return";
 
   //
   static skipStyle(BuildContext context) => TextStyle(

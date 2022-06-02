@@ -26,19 +26,16 @@ class OnboardCard extends StatelessWidget {
         builder: (BuildContext context, BoxConstraints constraints) {
           return Column(
             children: [
-              SpaceSizedHeight(
-                  context: context, height: constraints.maxHeight * 0.1),
-              _indicatorRow(),
-              SpaceSizedHeight(
-                  context: context, height: constraints.maxHeight * 0.1),
+              _spaced(context, constraints, 0.08),
+              _indicatorRow(context),
+              _spaced(context, constraints, 0.08),
               _titleSubTitle(
                 context: context,
                 model: viewModel.onboardList[currentPages],
               ),
               const Spacer(),
               _cardButton(context),
-              SpaceSizedHeight(
-                  context: context, height: constraints.maxHeight * 0.05),
+              _spaced(context, constraints, 0.05),
             ],
           );
         },
@@ -46,34 +43,42 @@ class OnboardCard extends StatelessWidget {
     );
   }
 
+  SpaceSizedHeight _spaced(
+      BuildContext context, BoxConstraints constraints, double height) {
+    return SpaceSizedHeight(
+        context: context, height: constraints.maxHeight * height);
+  }
+
   PaddingRow _cardButton(BuildContext context) {
     return PaddingRow(
-      padding: context.padHorizontalNormaly,
+      padding: context.padHorizontalMedium,
       children: [
+        // Skip Button for skip page
         ElevatedButtonWithStadiumBorder(
-          fixedSize: Size(context.heightXXL, context.heightS),
+          fixedSize: Size(context.heightL * 2, context.heightS),
           styleBackgroundColor: ThemeConst.primaryColor,
           foregroundColor: Colors.black,
-          child: const Text("Skip"),
-          onPressed: () {
-            Navigator.pushNamedAndRemoveUntil(
-                context, AppRoutes.login, (route) => false);
-          },
+          child: const Text(OnBoardConst.skipButton),
+          onPressed: () => Navigator.pushNamedAndRemoveUntil(
+              context, AppRoutes.login, (route) => false),
         ),
         const Spacer(),
+        // Next Page for pass other page
         ElevatedButtonWithStadiumBorder(
-          fixedSize: Size(context.heightXXL, context.heightS),
+          fixedSize: Size(context.heightL * 2, context.heightS),
           styleBackgroundColor: ThemeConst.primaryColor,
           foregroundColor: Colors.black,
-          child: Text(currentPages == viewModel.onboardList.length - 1
-              ? "Return"
-              : "Next"),
+          child: Text(
+            currentPages == viewModel.onboardList.length - 1
+                ? OnBoardConst.returnButton
+                : OnBoardConst.nextButton,
+          ),
           onPressed: () {
             if (currentPages == viewModel.onboardList.length - 1) {
               viewModel.controller.jumpToPage(0);
             } else {
               viewModel.controller.nextPage(
-                duration: const Duration(milliseconds: 200),
+                duration: const Duration(milliseconds: 300),
                 curve: Curves.easeIn,
               );
             }
@@ -84,13 +89,14 @@ class OnboardCard extends StatelessWidget {
   }
 
   //
-  Widget _indicatorRow() {
+  Widget _indicatorRow(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         ...List.generate(
           viewModel.onboardList.length,
           (index) => MyPageIndicator(
+            size: context.heightXS * 2,
             unSelectedColor: ThemeConst.primaryColor,
             selectedColor: Colors.black,
             isActive: index == currentPages ? true : false,

@@ -9,7 +9,6 @@ class OnBoardScreen extends BaseStateless {
   OnBoardScreen({Key? key}) : super(key: key);
 
   late final OnBoardScreenViewModel _viewModel;
-  late final BuildContext _context;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +20,6 @@ class OnBoardScreen extends BaseStateless {
       },
       onPageBuilder: (BuildContext context, OnBoardScreenViewModel viewModel) {
         _viewModel = viewModel;
-        _context = context;
         return _scaffold();
       },
     );
@@ -30,9 +28,6 @@ class OnBoardScreen extends BaseStateless {
   Scaffold _scaffold() => Scaffold(
         body: SafeArea(
           child: PageView.builder(
-            onPageChanged: (value) {
-              _viewModel.changePage(value);
-            },
             controller: _viewModel.controller,
             itemCount: _viewModel.onboardList.length,
             itemBuilder: (context, index) {
@@ -41,7 +36,6 @@ class OnBoardScreen extends BaseStateless {
                   // Image Widget
                   ExpandImageField(
                       imgUrl: _viewModel.onboardList[index].imgUrl!),
-                  //expandImageField(_viewModel.onboardList[index].imgUrl!),
                   // Card Widget
                   OnboardCard(viewModel: _viewModel, currentPages: index),
                 ],

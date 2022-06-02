@@ -22,6 +22,8 @@ class OnBoardModel extends BaseModel {
   static String img = 'imgUrl';
   static String tit = 'title';
 
+  // henüz bir boka yaramıyor geliştireceğim
+  // amacı firebase cloud içerisinden model eşlenikli veriyi doğrudan modele çevirebilmesi
   @override
   fromDocumentSnapshot(DocumentSnapshot<Map<String, dynamic>> docs) {
     var _docs = docs.data()!;

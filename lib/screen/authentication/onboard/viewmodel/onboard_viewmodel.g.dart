@@ -41,22 +41,6 @@ mixin _$OnBoardScreenViewModel on _OnBoardScreenViewModelBase, Store {
     });
   }
 
-  late final _$currentPageAtom =
-      Atom(name: '_OnBoardScreenViewModelBase.currentPage', context: context);
-
-  @override
-  int get currentPage {
-    _$currentPageAtom.reportRead();
-    return super.currentPage;
-  }
-
-  @override
-  set currentPage(int value) {
-    _$currentPageAtom.reportWrite(value, super.currentPage, () {
-      super.currentPage = value;
-    });
-  }
-
   late final _$_OnBoardScreenViewModelBaseActionController =
       ActionController(name: '_OnBoardScreenViewModelBase', context: context);
 
@@ -72,22 +56,10 @@ mixin _$OnBoardScreenViewModel on _OnBoardScreenViewModelBase, Store {
   }
 
   @override
-  void changePage(int newPage) {
-    final _$actionInfo = _$_OnBoardScreenViewModelBaseActionController
-        .startAction(name: '_OnBoardScreenViewModelBase.changePage');
-    try {
-      return super.changePage(newPage);
-    } finally {
-      _$_OnBoardScreenViewModelBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String toString() {
     return '''
 controller: ${controller},
-onboardList: ${onboardList},
-currentPage: ${currentPage}
+onboardList: ${onboardList}
     ''';
   }
 }

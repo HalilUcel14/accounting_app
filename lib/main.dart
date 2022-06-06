@@ -1,15 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hucel_core/hucel_core.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-import 'constants/shared_constants.dart';
 import 'core/route/app_route.dart';
-import 'core/theme/theme_management/theme_extension.dart';
 import 'core/theme/theme_management/theme_manager.dart';
 
-late bool _isFirstTimeShowed;
+late bool isFirstTimeShowedOnboardScreen;
 
 void main() async {
   SystemChrome.setSystemUIOverlayStyle(
@@ -21,9 +19,11 @@ void main() async {
   );
   WidgetsFlutterBinding.ensureInitialized();
   //
-  SharedPreferences prefs = await SharedPreferences.getInstance();
+  SharedManager prefs = SharedManager.instance;
   await Firebase.initializeApp();
-  _isFirstTimeShowed = prefs.getBool(SharedConstants.onboard) ?? false;
+
+  isFirstTimeShowedOnboardScreen =
+      prefs.getBoolPreferences(PreferencesKeys.onboard.toString());
   //
   runApp(
     MultiProvider(
@@ -45,8 +45,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Vakıfbank SK',
       theme: context.theme,
-      initialRoute: AppRoutes.onboard,
-      //    _isFirstTimeShowed ? AppRoutes.initRoute : AppRoutes.onboard,
+      initialRoute:
+          isFirstTimeShowedOnboardScreen ? AppRoutes.login : AppRoutes.onboard,
       routes: AppRoutes.instance.routes,
     );
   }

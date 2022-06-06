@@ -20,8 +20,7 @@ class AppRoutes {
   Map<String, Widget Function(BuildContext)> routes = <String, WidgetBuilder>{
     initRoute: (context) => const MainScaffold(),
     onboard: (context) => OnBoardScreen(),
-    login: (context) => const LoginScreen(),
-    // menu: (context) => const MenuScreen(),
+    login: (context) => LoginScreen(),
   };
 }
 

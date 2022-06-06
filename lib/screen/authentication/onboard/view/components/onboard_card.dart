@@ -9,9 +9,8 @@ import '../../model/onboard_model.dart';
 import '../../viewmodel/onboard_viewmodel.dart';
 import 'onboard_constants.dart';
 
-class OnboardCard extends StatelessWidget {
-  const OnboardCard(
-      {Key? key, required this.viewModel, required this.currentPages})
+class OnboardCard extends BaseStateless {
+  OnboardCard({Key? key, required this.viewModel, required this.currentPages})
       : super(key: key);
   //
   final OnBoardScreenViewModel viewModel;
@@ -59,8 +58,12 @@ class OnboardCard extends StatelessWidget {
           styleBackgroundColor: ThemeConst.primaryColor,
           foregroundColor: Colors.black,
           child: const Text(OnBoardConst.skipButton),
-          onPressed: () => Navigator.pushNamedAndRemoveUntil(
-              context, AppRoutes.login, (route) => false),
+          onPressed: () {
+            Navigator.pushNamedAndRemoveUntil(
+                context, AppRoutes.login, (route) => false);
+            SharedManager prefs = SharedManager.instance;
+            prefs.setBoolValue(PreferencesKeys.onboard.toString(), true);
+          },
         ),
         const Spacer(),
         // Next Page for pass other page

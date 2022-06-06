@@ -22,6 +22,9 @@ class OnBoardScreen extends BaseStateless {
         _viewModel = viewModel;
         return _scaffold();
       },
+      onDispose: () {
+        _viewModel.controller.dispose();
+      },
     );
   }
 

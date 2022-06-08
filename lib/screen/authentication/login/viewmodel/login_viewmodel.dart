@@ -17,6 +17,9 @@ abstract class _LoginScreenViewModelBase with Store, BaseViewModel {
   void init() {}
 
   @observable
+  List<String> errorText = [];
+
+  @observable
   TextEditingController emailController = TextEditingController();
   @observable
   TextEditingController passwordController = TextEditingController();

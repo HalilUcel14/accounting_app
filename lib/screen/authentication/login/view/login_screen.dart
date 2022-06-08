@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hucel_core/hucel_core.dart';
 import 'package:hucel_widget/hucel_widget.dart';
 
+import '../../../../core/widgets/have_an_account.dart';
 import '../viewmodel/login_viewmodel.dart';
 import 'components/login_formfield.dart';
 import 'components/login_title.dart';
@@ -23,7 +24,7 @@ class LoginScreen extends BaseStateless {
       onPageBuilder: (BuildContext context, LoginScreenViewModel viewModel) {
         _loginViewModel = viewModel;
         _context = context;
-        return _scaffold();
+        return _scaffold(context);
       },
       onDispose: () {
         _loginViewModel.emailController.dispose();
@@ -32,20 +33,25 @@ class LoginScreen extends BaseStateless {
     );
   }
 
-  Scaffold _scaffold() => Scaffold(
+  Scaffold _scaffold(BuildContext context) => Scaffold(
         resizeToAvoidBottomInset: false,
         body: SafeArea(
           child: ExpandedContainer(
-            padding: _context.padAllMedium,
+            padding: _context.padAllM,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 //
                 const Spacer(),
                 const LoginTitle(),
-                const Spacer(),
+                const Spacer(
+                  flex: 2,
+                ),
                 LoginFormField(viewModel: _loginViewModel),
                 const Spacer(flex: 4),
+                HaveAnAccount(
+                  onPressed: () {},
+                ),
               ],
             ),
           ),

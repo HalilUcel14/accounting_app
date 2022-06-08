@@ -20,7 +20,7 @@ class OnboardCard extends BaseStateless {
   Widget build(BuildContext context) {
     return ExpandedContainer(
       decoration: OnBoardConst.cardDecoration(context),
-      margin: context.padAllNormaly,
+      margin: context.padAllN,
       child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           return Column(
@@ -50,7 +50,7 @@ class OnboardCard extends BaseStateless {
 
   PaddingRow _cardButton(BuildContext context) {
     return PaddingRow(
-      padding: context.padHorizontalMedium,
+      padding: context.padHorizontalM,
       children: [
         // Skip Button for skip page
         ElevatedButtonWithStadiumBorder(

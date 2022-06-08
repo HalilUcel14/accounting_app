@@ -17,7 +17,7 @@ class WhiteFormContainer extends Container {
                 padding: const EdgeInsets.only(left: 12.0, right: 4.0),
                 child: icon,
               ),
-              child,
+              Expanded(child: child),
             ],
           ),
           decoration: BoxDecoration(

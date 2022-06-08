@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hucel_core/hucel_core.dart';
 import 'package:hucel_widget/hucel_widget.dart';
 
-import '../../../../../core/firebase/firestore/get_download_url.dart';
-
 class ExpandImageField extends StatelessWidget {
   const ExpandImageField({Key? key, required this.imgUrl}) : super(key: key);
   //

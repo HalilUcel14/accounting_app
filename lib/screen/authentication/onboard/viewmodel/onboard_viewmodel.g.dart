@@ -41,18 +41,14 @@ mixin _$OnBoardScreenViewModel on _OnBoardScreenViewModelBase, Store {
     });
   }
 
-  late final _$_OnBoardScreenViewModelBaseActionController =
-      ActionController(name: '_OnBoardScreenViewModelBase', context: context);
+  late final _$getDataFromFirebaseAsyncAction = AsyncAction(
+      '_OnBoardScreenViewModelBase.getDataFromFirebase',
+      context: context);
 
   @override
-  List<OnBoardModel> fetchDataFromFirebase({required String collectionName}) {
-    final _$actionInfo = _$_OnBoardScreenViewModelBaseActionController
-        .startAction(name: '_OnBoardScreenViewModelBase.fetchDataFromFirebase');
-    try {
-      return super.fetchDataFromFirebase(collectionName: collectionName);
-    } finally {
-      _$_OnBoardScreenViewModelBaseActionController.endAction(_$actionInfo);
-    }
+  Future<void> getDataFromFirebase() {
+    return _$getDataFromFirebaseAsyncAction
+        .run(() => super.getDataFromFirebase());
   }
 
   @override

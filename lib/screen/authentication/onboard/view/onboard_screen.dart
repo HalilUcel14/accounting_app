@@ -4,11 +4,10 @@ import 'package:hucel_core/hucel_core.dart';
 import '../viewmodel/onboard_viewmodel.dart';
 import 'components/onboard_card.dart';
 import 'components/onboard_image.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
 class OnBoardScreen extends BaseStateless {
   OnBoardScreen({Key? key}) : super(key: key);
-
-  late final OnBoardScreenViewModel _viewModel;
 
   @override
   Widget build(BuildContext context) {
@@ -19,32 +18,35 @@ class OnBoardScreen extends BaseStateless {
         model.init();
       },
       onPageBuilder: (BuildContext context, OnBoardScreenViewModel viewModel) {
-        _viewModel = viewModel;
-        return _scaffold();
-      },
-      onDispose: () {
-        _viewModel.controller.dispose();
+        return _scaffold(viewModel);
       },
     );
   }
 
-  Scaffold _scaffold() => Scaffold(
-        body: SafeArea(
-          child: PageView.builder(
-            controller: _viewModel.controller,
-            itemCount: _viewModel.onboardList.length,
-            itemBuilder: (context, index) {
-              return Column(
-                children: [
-                  // Image Widget
-                  ExpandImageField(
-                      imgUrl: _viewModel.onboardList[index].imgUrl!),
-                  // Card Widget
-                  OnboardCard(viewModel: _viewModel, currentPages: index),
-                ],
-              );
-            },
-          ),
+  Scaffold _scaffold(OnBoardScreenViewModel viewModel) {
+    //viewModel.getDataFromFirebase;
+    return Scaffold(
+      body: SafeArea(
+        child: Observer(
+          builder: (_) {
+            return PageView.builder(
+              controller: viewModel.controller,
+              itemCount: viewModel.onboardList.length,
+              itemBuilder: (context, index) {
+                return Column(
+                  children: [
+                    // Image Widget
+                    ExpandImageField(
+                        imgUrl: viewModel.onboardList[index].imgUrl!),
+                    // Card Widget
+                    OnboardCard(viewModel: viewModel, currentPages: index),
+                  ],
+                );
+              },
+            );
+          },
         ),
-      );
+      ),
+    );
+  }
 }

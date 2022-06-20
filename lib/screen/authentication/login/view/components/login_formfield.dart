@@ -53,16 +53,24 @@ class LoginFormField extends StatelessWidget {
       styleBackgroundColor: ThemeConst.primaryColor,
       fixedSize: Size(context.dynamicWidth(0.35), context.dynamicHeight(0.065)),
       onPressed: () {
-        if (viewModel.emailController.text.isNotEmpty &&
+        bool _isNotEmpty = viewModel.emailController.text.isNotEmpty &&
             viewModel.passwordController.text.isNotEmpty &&
-            viewModel.errorText.isEmpty) {
-          print("İs Okey");
+            viewModel.errorText.isEmpty;
+        //
+        if (_isNotEmpty) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            MySnackBar(
+                titleText: "Hatalı Veri Girişi.",
+                errorList: viewModel.errorText),
+          );
         } else {
-          print("İs Not Okey");
+          ScaffoldMessenger.of(context).showSnackBar(
+            MySnackBar(titleText: "Eksik Veri Girişi.", errorList: const [
+              "Lütfen Email Address giriniz.",
+              "Lütfen Password giriniz.",
+            ]),
+          );
         }
-        ScaffoldMessenger.of(context).showSnackBar(
-          MySnackBar(errorList: viewModel.errorText),
-        );
       },
     );
   }

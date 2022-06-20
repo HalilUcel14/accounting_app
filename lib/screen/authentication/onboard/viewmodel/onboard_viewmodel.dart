@@ -12,10 +12,11 @@ class OnBoardScreenViewModel = _OnBoardScreenViewModelBase
 
 abstract class _OnBoardScreenViewModelBase with Store, BaseViewModel {
   //
-  @action
-  List<OnBoardModel> fetchDataFromFirebase({required String collectionName}) {
+
+  Future<List<OnBoardModel>> _fetchDataFromFirebase(
+      {required String collectionName}) async {
     List<OnBoardModel> listed = [];
-    FirebaseFirestore.instance
+    await FirebaseFirestore.instance
         .collection(collectionName)
         .get()
         .then((docsSnapshot) {
@@ -33,12 +34,17 @@ abstract class _OnBoardScreenViewModelBase with Store, BaseViewModel {
   @observable
   List<OnBoardModel> onboardList = [];
 
+  @action
+  Future<void> getDataFromFirebase() async {
+    onboardList = await _fetchDataFromFirebase(collectionName: "onboard");
+  }
+
   //
   @override
   void setContext(BuildContext? context) => baseContext = context;
 
   @override
   void init() async {
-    onboardList = fetchDataFromFirebase(collectionName: "onboard");
+    await getDataFromFirebase();
   }
 }

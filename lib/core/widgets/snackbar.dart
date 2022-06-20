@@ -7,11 +7,15 @@ class MySnackBar extends SnackBar {
     Key? key,
     Color? colors = Colors.transparent,
     double elevations = 0.0,
+    required String titleText,
     required List<String> errorList,
     SnackBarBehavior? snackBarBehavior = SnackBarBehavior.floating,
   }) : super(
           key: key,
-          content: _SnackBarChild(errorList: errorList),
+          content: _SnackBarChild(
+            errorList: errorList,
+            titleText: titleText,
+          ),
           backgroundColor: colors,
           elevation: elevations,
           behavior: snackBarBehavior,
@@ -19,9 +23,12 @@ class MySnackBar extends SnackBar {
 }
 
 class _SnackBarChild extends StatelessWidget {
-  const _SnackBarChild({Key? key, required this.errorList}) : super(key: key);
+  const _SnackBarChild(
+      {Key? key, required this.errorList, required this.titleText})
+      : super(key: key);
   //
   final List<String> errorList;
+  final String titleText;
   //
   @override
   Widget build(BuildContext context) {
@@ -52,7 +59,7 @@ class _SnackBarChild extends StatelessWidget {
           ],
         ),
         child: Text(
-          "Hatalı Veri Girişi.",
+          titleText,
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: context.heightS,

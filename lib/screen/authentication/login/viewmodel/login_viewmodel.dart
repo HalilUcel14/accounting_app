@@ -8,7 +8,7 @@ class LoginScreenViewModel = _LoginScreenViewModelBase
     with _$LoginScreenViewModel;
 
 abstract class _LoginScreenViewModelBase with Store, BaseViewModel {
-  // Variable ObservableB
+  // Variable Observable
 
   //
   @override

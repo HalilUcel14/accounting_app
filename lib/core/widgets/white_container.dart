@@ -5,12 +5,15 @@ class WhiteFormContainer extends Container {
     Key? key,
     required Widget child,
     required Widget icon,
+    Widget? rightIcon,
+    EdgeInsetsGeometry? containerPadding = const EdgeInsets.all(4.0),
     double borRadius = 20,
     double blurRadius = 10,
     Color decorationColor = Colors.white,
     Color shadowColor = Colors.grey,
   }) : super(
           key: key,
+          padding: containerPadding,
           child: Row(
             children: [
               Padding(
@@ -18,6 +21,11 @@ class WhiteFormContainer extends Container {
                 child: icon,
               ),
               Expanded(child: child),
+              rightIcon ??
+                  const SizedBox(
+                    height: 0,
+                    width: 0,
+                  ),
             ],
           ),
           decoration: BoxDecoration(

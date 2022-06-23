@@ -41,7 +41,7 @@ dependencies:
   flutter_svg: ^1.0.3
 
   ## My Packages ##
-  hucel_core: ^0.1.0
+  hucel_core: ^0.1.1
   hucel_widget: ^0.0.8
 
   ## Local Data Manager  ##

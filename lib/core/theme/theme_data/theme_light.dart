@@ -14,38 +14,57 @@ class ThemeLight extends ApplicationTheme {
 
   @override
   ThemeData? get theme => ThemeData.light().copyWith(
-        appBarTheme: const AppBarTheme(
-          centerTitle: true,
-          elevation: 0.0,
-          backgroundColor: Colors.transparent,
-          titleTextStyle: TextStyle(
-            fontSize: 22,
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        appBarTheme: _defaultAppBarTheme(),
         elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ButtonStyle(
-            backgroundColor:
-                MaterialStateProperty.all<Color>(ThemeConst.primaryColor),
-            foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
-          ),
+          style: _defaultButtonStyle(),
         ),
-        buttonTheme: const ButtonThemeData(
-          textTheme: ButtonTextTheme.normal,
-          minWidth: 88,
-          height: 36,
-          padding: EdgeInsets.only(top: 0, bottom: 0, left: 16, right: 16),
-          shape: RoundedRectangleBorder(
-            side: BorderSide(
-              color: Color(0xff000000),
-              width: 0,
-              style: BorderStyle.none,
-            ),
-            borderRadius: BorderRadius.all(Radius.circular(2.0)),
-          ),
+        textButtonTheme: TextButtonThemeData(
+          style: _defaultButtonStyle(),
         ),
+        buttonTheme: _defaultButtonTheme(),
       );
+
+  /// İnline Coding With Extract Method
+  ///
+  ///
+  AppBarTheme _defaultAppBarTheme() {
+    return const AppBarTheme(
+      centerTitle: true,
+      elevation: 0.0,
+      backgroundColor: Colors.transparent,
+      titleTextStyle: TextStyle(
+        fontSize: 22,
+        color: Colors.black,
+        fontWeight: FontWeight.bold,
+      ),
+    );
+  }
+
+  ButtonStyle _defaultButtonStyle() {
+    return ButtonStyle(
+      animationDuration: const Duration(milliseconds: 300),
+      backgroundColor:
+          MaterialStateProperty.all<Color>(ThemeConst.primaryColor),
+      foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+    );
+  }
+
+  ButtonThemeData _defaultButtonTheme() {
+    return const ButtonThemeData(
+      textTheme: ButtonTextTheme.normal,
+      minWidth: 88,
+      height: 36,
+      padding: EdgeInsets.only(top: 0, bottom: 0, left: 16, right: 16),
+      shape: RoundedRectangleBorder(
+        side: BorderSide(
+          color: Color(0xff000000),
+          width: 0,
+          style: BorderStyle.none,
+        ),
+        borderRadius: BorderRadius.all(Radius.circular(8.0)),
+      ),
+    );
+  }
 }
 
 // primarySwatch: const MaterialColor(

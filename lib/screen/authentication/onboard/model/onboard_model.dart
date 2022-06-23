@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hucel_core/hucel_core.dart';
 
 class OnBoardModel extends BaseModel {
@@ -21,20 +20,6 @@ class OnBoardModel extends BaseModel {
   static String lastDesc = 'lastDescription';
   static String img = 'imgUrl';
   static String tit = 'title';
-
-  // henüz bir boka yaramıyor geliştireceğim
-  // amacı firebase cloud içerisinden model eşlenikli veriyi doğrudan modele çevirebilmesi
-  @override
-  fromDocumentSnapshot(DocumentSnapshot<Map<String, dynamic>> docs) {
-    var _docs = docs.data()!;
-    return OnBoardModel(
-      firstDescription: _docs[firstDesc],
-      imgUrl: _docs[img],
-      lastDescription: _docs[lastDesc],
-      specialDescription: _docs[specialDesc],
-      title: _docs[tit],
-    );
-  }
 
   @override
   fromJson(Map<String, dynamic> json) {

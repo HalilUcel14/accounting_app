@@ -1,6 +1,7 @@
-import 'package:counting_app/constants/theme_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:hucel_core/hucel_core.dart';
+
+import '../../constants/theme_constants.dart';
 
 class MySnackBar extends SnackBar {
   MySnackBar({
@@ -9,12 +10,14 @@ class MySnackBar extends SnackBar {
     double elevations = 0.0,
     required String titleText,
     required List<String> errorList,
+    required String pngIcons,
     SnackBarBehavior? snackBarBehavior = SnackBarBehavior.floating,
   }) : super(
           key: key,
           content: _SnackBarChild(
             errorList: errorList,
             titleText: titleText,
+            pngIcon: pngIcons,
           ),
           backgroundColor: colors,
           elevation: elevations,
@@ -23,12 +26,16 @@ class MySnackBar extends SnackBar {
 }
 
 class _SnackBarChild extends StatelessWidget {
-  const _SnackBarChild(
-      {Key? key, required this.errorList, required this.titleText})
-      : super(key: key);
+  const _SnackBarChild({
+    Key? key,
+    required this.errorList,
+    required this.titleText,
+    required this.pngIcon,
+  }) : super(key: key);
   //
   final List<String> errorList;
   final String titleText;
+  final String pngIcon;
   //
   @override
   Widget build(BuildContext context) {
@@ -36,7 +43,7 @@ class _SnackBarChild extends StatelessWidget {
       children: [
         // Ana Kutu
         _errorTextBox(context),
-        _iconsBox(context),
+        _iconsBox(context, pngIcon),
         _errorTitleBox(context),
       ],
     );
@@ -58,12 +65,14 @@ class _SnackBarChild extends StatelessWidget {
             ),
           ],
         ),
-        child: Text(
-          titleText,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: context.heightS,
-            color: Colors.black,
+        child: FittedBox(
+          child: Text(
+            titleText,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: context.heightS,
+              color: Colors.black,
+            ),
           ),
         ),
       ),
@@ -71,7 +80,7 @@ class _SnackBarChild extends StatelessWidget {
     );
   }
 
-  Positioned _iconsBox(BuildContext context) {
+  Positioned _iconsBox(BuildContext context, String iconName) {
     return Positioned(
       child: Container(
         height: context.heightL,
@@ -89,7 +98,7 @@ class _SnackBarChild extends StatelessWidget {
           ],
         ),
         child: Image.asset(
-          "exclamation".getPngIcon,
+          iconName.getPngIcon,
           color: Colors.black87,
         ),
       ),
@@ -103,11 +112,11 @@ class _SnackBarChild extends StatelessWidget {
       child: Container(
         padding:
             EdgeInsets.only(top: context.heightL / 1.75, left: context.heightS),
-        height: context.heightXXL * 1.2,
+        height: context.heightXXL * 1.5,
         width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: context.borderRadiusN,
-          color: ThemeConst.primaryDarkColor,
+          color: ThemeConst.primaryColor,
           boxShadow: const [
             BoxShadow(
               blurRadius: 20,
@@ -122,17 +131,19 @@ class _SnackBarChild extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(
               errorList.length,
-              (index) => Row(
-                children: [
-                  Text(
-                    errorList[index],
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: context.heightS * 0.9,
+              (index) => FittedBox(
+                child: Row(
+                  children: [
+                    Text(
+                      errorList[index],
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: context.heightS * 0.9,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: context.heightN)
-                ],
+                    SizedBox(height: context.heightN)
+                  ],
+                ),
               ),
             ),
           ),

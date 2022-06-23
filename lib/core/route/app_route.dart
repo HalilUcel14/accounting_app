@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../screen/authentication/forgot/view/forgot_screen.dart';
 import '../../screen/authentication/login/view/login_screen.dart';
 import '../../screen/authentication/onboard/view/onboard_screen.dart';
+import '../../screen/authentication/register/view/register_screen.dart';
 import '../../screen/menu/home/home_screen.dart';
 
 class AppRoutes {
@@ -17,6 +18,7 @@ class AppRoutes {
   static const String initRoute = '/';
   static const String onboard = '/onboard';
   static const String home = '/home';
+  static const String register = '/register';
   static const String login = '/login';
   static const String forgot = '/forgot';
 
@@ -26,6 +28,7 @@ class AppRoutes {
     login: (context) => LoginScreen(),
     home: (context) => const HomeScreen(),
     forgot: (context) => const ForgotScreen(),
+    register: (context) => RegisterScreen(),
   };
 }
 

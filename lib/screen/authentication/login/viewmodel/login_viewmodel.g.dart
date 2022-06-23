@@ -57,12 +57,43 @@ mixin _$LoginScreenViewModel on _LoginScreenViewModelBase, Store {
     });
   }
 
+  late final _$obscureTextAtom =
+      Atom(name: '_LoginScreenViewModelBase.obscureText', context: context);
+
+  @override
+  bool get obscureText {
+    _$obscureTextAtom.reportRead();
+    return super.obscureText;
+  }
+
+  @override
+  set obscureText(bool value) {
+    _$obscureTextAtom.reportWrite(value, super.obscureText, () {
+      super.obscureText = value;
+    });
+  }
+
+  late final _$_LoginScreenViewModelBaseActionController =
+      ActionController(name: '_LoginScreenViewModelBase', context: context);
+
+  @override
+  void obscureChange() {
+    final _$actionInfo = _$_LoginScreenViewModelBaseActionController
+        .startAction(name: '_LoginScreenViewModelBase.obscureChange');
+    try {
+      return super.obscureChange();
+    } finally {
+      _$_LoginScreenViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
 errorText: ${errorText},
 emailController: ${emailController},
-passwordController: ${passwordController}
+passwordController: ${passwordController},
+obscureText: ${obscureText}
     ''';
   }
 }

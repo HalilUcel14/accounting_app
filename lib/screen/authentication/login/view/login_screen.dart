@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hucel_core/hucel_core.dart';
 import 'package:hucel_widget/hucel_widget.dart';
 
+import '../../../../core/route/app_route.dart';
 import '../../../../core/widgets/have_an_account.dart';
 import '../../../menu/home/home_screen.dart';
 import '../viewmodel/login_viewmodel.dart';
@@ -50,7 +51,9 @@ class LoginScreen extends BaseStateless {
                 ),
                 LoginFormField(viewModel: viewModel),
                 const Spacer(flex: 4),
-                HaveAnAccount(onPressed: () {}),
+                HaveAnAccount(onPressed: () async {
+                  await Navigator.pushNamed(context, AppRoutes.register);
+                }),
               ],
             ),
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hucel_core/hucel_core.dart';
 
@@ -18,12 +19,17 @@ class LoginPasswordFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WhiteFormContainer(
-      icon: SvgPicture.asset(
-        AssetsConstants.lock.getSvgIcon,
-        fit: BoxFit.cover,
-        color: Colors.black,
-        height: context.heightS * 1.2,
-        alignment: Alignment.center,
+      icon: GestureDetector(
+        onTap: () {
+          viewModel.obscureChange();
+        },
+        child: SvgPicture.asset(
+          AssetsConstants.lock.getSvgIcon,
+          fit: BoxFit.cover,
+          color: Colors.black,
+          height: context.heightS * 1.2,
+          alignment: Alignment.center,
+        ),
       ),
       child: _passwordFormField(context),
       rightIcon: _forgotTextButton(context),
@@ -43,10 +49,13 @@ class LoginPasswordFormField extends StatelessWidget {
   }
 
   Widget _passwordFormField(BuildContext context) {
-    return TextFormField(
-      controller: viewModel.passwordController,
-      validator: _passwordValid,
-      decoration: LoginConstant().passwordInputDecoration(context),
+    return Observer(
+      builder: (context) => TextFormField(
+        controller: viewModel.passwordController,
+        validator: _passwordValid,
+        obscureText: viewModel.obscureText,
+        decoration: LoginConstant().passwordInputDecoration(context),
+      ),
     );
   }
 

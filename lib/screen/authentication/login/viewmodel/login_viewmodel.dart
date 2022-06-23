@@ -24,6 +24,13 @@ abstract class _LoginScreenViewModelBase with Store, BaseViewModel {
   @observable
   TextEditingController passwordController = TextEditingController();
 
+  @observable
+  bool obscureText = true;
+
+  @action
+  void obscureChange() {
+    obscureText = !obscureText;
+  }
   //
   //
 

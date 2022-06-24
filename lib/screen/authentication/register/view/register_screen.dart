@@ -43,6 +43,7 @@ class RegisterScreen extends BaseStateless {
                 const RegisterButton(),
                 const Spacer(),
                 HaveAnAccount(
+                  context,
                   isLogin: false,
                   onPressed: () async {
                     await Navigator.pushNamed(context, AppRoutes.login);

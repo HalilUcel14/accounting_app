@@ -48,7 +48,7 @@ class LoginScreen extends BaseStateless {
                   LoginFormButton(viewModel: viewModel, context: context)
                 ]),
                 const Spacer(flex: 4),
-                HaveAnAccount(onPressed: () async {
+                HaveAnAccount(context, onPressed: () async {
                   await Navigator.pushNamed(context, AppRoutes.register);
                 }),
               ],

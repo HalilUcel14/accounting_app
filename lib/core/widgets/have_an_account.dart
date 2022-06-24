@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:hucel_core/hucel_core.dart';
 
 import '../../constants/theme_constants.dart';
 
 class HaveAnAccount extends Row {
-  HaveAnAccount({
+  HaveAnAccount(
+    BuildContext context, {
     Key? key,
     bool isLogin = true,
-    TextStyle firstTextStyle = const TextStyle(
-      fontSize: 16,
-    ),
-    TextStyle buttonTextStyle = const TextStyle(
-      color: ThemeConst.primaryColor,
-      fontWeight: FontWeight.bold,
-      fontSize: 18,
-    ),
+    TextStyle? firstTextStyle,
+    TextStyle? buttonTextStyle,
     VoidCallback? onPressed,
   }) : super(
           key: key,
@@ -21,13 +17,18 @@ class HaveAnAccount extends Row {
             const Spacer(),
             Text(
               isLogin ? "Don't have an Account? " : "Already have an Account? ",
-              style: firstTextStyle,
+              style: firstTextStyle ?? TextStyle(fontSize: context.heightS),
             ),
             TextButton(
               onPressed: onPressed,
               child: Text(
                 isLogin ? "Sign Up" : "Log In",
-                style: buttonTextStyle,
+                style: buttonTextStyle ??
+                    TextStyle(
+                      color: ThemeConst.primaryColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: context.heightS * 1.3,
+                    ),
               ),
             ),
             const Spacer(),

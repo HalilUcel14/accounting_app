@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hucel_core/hucel_core.dart';
 
-import '../../../../../constants/asset_constants.dart';
-import '../../../../../core/widgets/default_textform.dart';
-import '../../../../../core/widgets/textform_svg_icon.dart';
-import '../../../../../core/widgets/white_container.dart';
 import '../../view_model/register_view_model.dart';
+import 'email_field.dart';
 import 'fullname_field.dart';
+import 'password_field.dart';
 
 class RegisterFormField extends StatelessWidget {
   const RegisterFormField({Key? key, required this.viewModel})
@@ -21,25 +19,10 @@ class RegisterFormField extends StatelessWidget {
           // Full Name
           RegisterFullNameField(viewModel: viewModel),
           SpaceSizedHeightBox(context: context, height: 0.05),
-          WhiteFormContainer(
-            child: DefaultFormField.emailFormField(context,
-                controller: viewModel.emailEditingController),
-            icon: TextFormSvgIcon.asset(AssetsConstants.mail, context),
-          ),
+          RegisterEmailField(viewModel: viewModel),
           SpaceSizedHeightBox(context: context, height: 0.01),
           //Password
-          WhiteFormContainer(
-            child: DefaultFormField.passwordFormField(context,
-                controller: viewModel.passwordEditingController),
-            icon: TextFormSvgIcon.asset(AssetsConstants.lock, context),
-          ),
-          SpaceSizedHeightBox(context: context, height: 0.01),
-          // Confirm Password
-          WhiteFormContainer(
-            child: DefaultFormField.passwordFormField(context,
-                controller: viewModel.confirmEditingController),
-            icon: TextFormSvgIcon.asset(AssetsConstants.lock, context),
-          ),
+          RegisterPasswordField(viewModel: viewModel),
         ],
       ),
     );

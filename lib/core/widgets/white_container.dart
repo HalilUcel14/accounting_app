@@ -8,12 +8,16 @@ class WhiteFormContainer extends Container {
     Widget? rightIcon,
     EdgeInsetsGeometry? containerPadding = const EdgeInsets.all(4.0),
     double borRadius = 20,
+    double? height,
+    double? width,
     double blurRadius = 10,
     Color decorationColor = Colors.white,
     Color shadowColor = Colors.grey,
   }) : super(
           key: key,
           padding: containerPadding,
+          height: height,
+          width: width,
           child: Row(
             children: [
               Padding(

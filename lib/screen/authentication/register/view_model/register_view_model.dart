@@ -12,4 +12,13 @@ abstract class _RegisterScreenViewModelBase with Store, BaseViewModel {
   void setContext(BuildContext meContext) => baseContext = meContext;
   @override
   void init() {}
+
+  @observable
+  TextEditingController nameEditingController = TextEditingController();
+  @observable
+  TextEditingController emailEditingController = TextEditingController();
+  @observable
+  TextEditingController passwordEditingController = TextEditingController();
+  @observable
+  TextEditingController confirmEditingController = TextEditingController();
 }

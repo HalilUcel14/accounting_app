@@ -1,14 +1,14 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hucel_core/hucel_core.dart';
 import 'package:hucel_widget/hucel_widget.dart';
 
 import '../../../../core/route/app_route.dart';
 import '../../../../core/widgets/have_an_account.dart';
-import '../../../menu/home/home_screen.dart';
 import '../viewmodel/login_viewmodel.dart';
-import 'components/login_form/login_formfield.dart';
+import 'components/login_button.dart';
+
 import 'components/login_title.dart';
+import 'login_form/login_formfield.dart';
 
 class LoginScreen extends BaseStateless {
   LoginScreen({Key? key}) : super(key: key);
@@ -22,16 +22,9 @@ class LoginScreen extends BaseStateless {
         model.init();
       },
       onPageBuilder: (BuildContext context, LoginScreenViewModel viewModel) {
-        if (FirebaseAuth.instance.currentUser != null) {
-          return const HomeScreen();
-        } else {
-          return _scaffold(context, viewModel);
-        }
+        return _scaffold(context, viewModel);
       },
-      onDispose: () {
-        // _loginViewModel.emailController.dispose();
-        //_loginViewModel.passwordController.dispose();
-      },
+      onDispose: () {},
     );
   }
 
@@ -50,6 +43,10 @@ class LoginScreen extends BaseStateless {
                   flex: 2,
                 ),
                 LoginFormField(viewModel: viewModel),
+                Row(children: [
+                  const Spacer(),
+                  LoginFormButton(viewModel: viewModel, context: context)
+                ]),
                 const Spacer(flex: 4),
                 HaveAnAccount(onPressed: () async {
                   await Navigator.pushNamed(context, AppRoutes.register);

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:hucel_core/hucel_core.dart';
 
 import '../../../../../../constants/asset_constants.dart';
 import '../../../../../../core/route/app_route.dart';
+import '../../../../../../core/widgets/default_textform.dart';
+import '../../../../../../core/widgets/textform_svg_icon.dart';
 import '../../../../../../core/widgets/white_container.dart';
-import '../../../../forgot/view/components/forgot_constants.dart';
-import '../../../viewmodel/login_viewmodel.dart';
-import '../login_constants.dart';
+import '../../../forgot/view/components/forgot_constants.dart';
+import '../../viewmodel/login_viewmodel.dart';
+import '../components/login_constants.dart';
 
 class LoginPasswordFormField extends StatelessWidget {
   const LoginPasswordFormField({Key? key, required this.viewModel})
@@ -16,22 +17,20 @@ class LoginPasswordFormField extends StatelessWidget {
 
   final LoginScreenViewModel viewModel;
 
+  /// ana dizayn password form field için
   @override
   Widget build(BuildContext context) {
     return WhiteFormContainer(
+      // icon tıklandığında şifre gizleme açma fonksiyonu
       icon: GestureDetector(
         onTap: () {
           viewModel.obscureChange();
         },
-        child: SvgPicture.asset(
-          AssetsConstants.lock.getSvgIcon,
-          fit: BoxFit.cover,
-          color: Colors.black,
-          height: context.heightS * 1.2,
-          alignment: Alignment.center,
-        ),
+        child: TextFormSvgIcon.asset(AssetsConstants.lock, context),
       ),
+      // formfield alanı
       child: _passwordFormField(context),
+      // şifre unuttum button
       rightIcon: _forgotTextButton(context),
     );
   }
@@ -49,12 +48,13 @@ class LoginPasswordFormField extends StatelessWidget {
   }
 
   Widget _passwordFormField(BuildContext context) {
+    // buton tıkladığında gizleme açma amaçlı observer
     return Observer(
-      builder: (context) => TextFormField(
-        controller: viewModel.passwordController,
+      builder: (context) => DefaultFormField.passwordFormField(
+        context,
         validator: _passwordValid,
         obscureText: viewModel.obscureText,
-        decoration: LoginConstant().passwordInputDecoration(context),
+        controller: viewModel.passwordController,
       ),
     );
   }

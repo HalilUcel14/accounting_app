@@ -1,39 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:hucel_core/hucel_core.dart';
 
 import '../../../../../../constants/asset_constants.dart';
+import '../../../../../../core/widgets/default_textform.dart';
+import '../../../../../../core/widgets/textform_svg_icon.dart';
 import '../../../../../../core/widgets/white_container.dart';
-import '../../../viewmodel/login_viewmodel.dart';
-import '../login_constants.dart';
+import '../../viewmodel/login_viewmodel.dart';
+import '../components/login_constants.dart';
 
 class LoginEmailFormField extends StatelessWidget {
   const LoginEmailFormField({Key? key, required this.viewModel})
       : super(key: key);
 
   final LoginScreenViewModel viewModel;
-
+  // ana dizayn
   @override
   Widget build(BuildContext context) {
     return WhiteFormContainer(
-      icon: SvgPicture.asset(
-        AssetsConstants.mail.getSvgIcon,
-        fit: BoxFit.cover,
-        color: Colors.black,
-        height: context.heightS,
-        alignment: Alignment.center,
+      // mail icon
+      icon: TextFormSvgIcon.asset(AssetsConstants.mail, context),
+      // form field
+      child: DefaultFormField.emailFormField(
+        context,
+        controller: viewModel.emailController,
+        validator: _emailValid,
       ),
-      child: _emailFormField(context),
-    );
-  }
-
-  Widget _emailFormField(BuildContext context) {
-    return TextFormField(
-      controller: viewModel.emailController,
-      autocorrect: false,
-      validator: _emailValid,
-      keyboardType: TextInputType.emailAddress,
-      decoration: LoginConstant().emailInputDecoration(context),
     );
   }
 

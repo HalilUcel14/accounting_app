@@ -6,7 +6,6 @@ import '../../../../core/route/app_route.dart';
 import '../../../../core/widgets/have_an_account.dart';
 import '../viewmodel/login_viewmodel.dart';
 import 'components/login_button.dart';
-
 import 'components/login_title.dart';
 import 'login_form/login_formfield.dart';
 
@@ -39,9 +38,7 @@ class LoginScreen extends BaseStateless {
               children: [
                 const Spacer(),
                 const LoginTitle(),
-                const Spacer(
-                  flex: 2,
-                ),
+                const Spacer(flex: 2),
                 LoginFormField(viewModel: viewModel),
                 Row(children: [
                   const Spacer(),

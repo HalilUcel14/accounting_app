@@ -18,18 +18,32 @@ class RegisterPasswordField extends StatelessWidget {
     return Column(
       children: [
         WhiteFormContainer(
-          child: DefaultFormField.passwordFormField(context,
-              controller: viewModel.passwordEditingController),
+          child: DefaultFormField.passwordFormField(
+            context,
+            controller: viewModel.passwordEditingController,
+            validator: passwordValid,
+          ),
           icon: TextFormSvgIcon.asset(AssetsConstants.lock, context),
         ),
         SpaceSizedHeightBox(context: context, height: 0.01),
         // Confirm Password
         WhiteFormContainer(
-          child: DefaultFormField.passwordFormField(context,
-              controller: viewModel.confirmEditingController),
+          child: DefaultFormField.passwordFormField(
+            context,
+            controller: viewModel.confirmEditingController,
+            validator: passwordConfirmValid,
+          ),
           icon: TextFormSvgIcon.asset(AssetsConstants.lock, context),
         ),
       ],
     );
+  }
+
+  String? passwordValid(String? value) {
+    return "";
+  }
+
+  String? passwordConfirmValid(String? value) {
+    return "";
   }
 }

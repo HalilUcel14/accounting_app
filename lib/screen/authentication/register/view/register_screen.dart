@@ -36,7 +36,6 @@ class RegisterScreen extends BaseStateless {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const RegisterTitle(),
-                //
                 SpaceSizedHeightBox(context: context, height: 0.08),
                 RegisterFormField(viewModel: viewModel),
                 SpaceSizedHeightBox(context: context, height: 0.05),

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "705285271105",
+    "project_id": "vakifbanksk-app",
+    "storage_bucket": "vakifbanksk-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:705285271105:android:78ceeded45722d75ada0c0",
+        "android_client_info": {
+          "package_name": "com.example.counting_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "705285271105-cdcfaq72caed30ioeefkeehhubsfjnci.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA08HrbfijYndxC5RuCQzPmVRGs0cJEhzU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "705285271105-cdcfaq72caed30ioeefkeehhubsfjnci.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
